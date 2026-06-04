@@ -1,0 +1,42 @@
+<!-- Archivo: res/layout/activity_settings.xml (VERSIÓN CORREGIDA) -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp"
+    android:gravity="center"
+    tools:context=".SettingsActivity">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Seleccionar Tema"
+        android:textSize="24sp"
+        android:layout_marginBottom="32dp"/>
+
+    <!-- RadioGroup para asegurar que solo una opción esté seleccionada -->
+    <RadioGroup
+        android:id="@+id/themeRadioGroup"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <!-- RadioButton para el Tema Claro, marcado por defecto -->
+        <RadioButton
+            android:id="@+id/buttonDayTheme"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            android:text="Tema Claro"
+            android:checked="true" /> <!-- android:checked="true" lo marca por defecto -->
+
+        <!-- RadioButton para el Tema Oscuro -->
+        <RadioButton
+            android:id="@+id/buttonNightTheme"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Tema Oscuro" />
+
+    </RadioGroup>
+
+</LinearLayout>

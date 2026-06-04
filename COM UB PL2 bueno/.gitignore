@@ -1,0 +1,29 @@
+# --- SEGURIDAD (¡MUY IMPORTANTE!) ---
+.env
+.env.local
+.env.*
+
+# --- Archivos de Sistema Operativo (Basura) ---
+.DS_Store
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# --- IDEs (Archivos de configuración de tu editor que no interesan a otros) ---
+.idea/
+.vscode/
+*.swp
+*.iml
+
+# --- Logs y Temporales ---
+*.log
+tmp/
+temp/
+
+# --- Si tienes carpetas de datos locales mapeadas (Opcional) ---
+# En tu docker-compose usas volúmenes nombrados, así que esto 
+# no es estrictamente necesario, pero por si acaso creas carpetas de datos locales:
+mysql-data/
+mosquitto-data/
+
+mariadb_data/

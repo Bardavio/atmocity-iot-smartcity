@@ -1,0 +1,186 @@
+name: ubicua-stack
+
+
+
+services:
+
+  # === SERVICIO 1: BROKER MQTT ===
+
+  mqtt-broker:
+
+    image: eclipse-mosquitto:latest
+
+    container_name: mqtt-broker
+
+    ports:
+
+      - "${MQTT_PORT}:1883"
+
+    volumes:
+
+      - ./mqtt/config:/mosquitto/config
+
+      - mosquitto-data:/mosquitto/data
+
+      - mosquitto-log:/mosquitto/log
+
+    networks:
+
+      - app-network
+
+    restart: unless-stopped
+
+    healthcheck:
+
+      test: ["CMD-SHELL", "mosquitto_pub -h localhost -t health/check -m 'test' || exit 1"]
+
+      interval: 15s
+
+      timeout: 10s
+
+      retries: 3
+
+      start_period: 30s
+
+
+
+  # === SERVICIO 2: BASE DE DATOS ===
+
+  mariadb-server:
+
+    image: mariadb:latest
+
+    container_name: mariadb-server
+
+    networks:
+
+      - app-network
+
+    volumes:
+
+      - ./mariadb_data:/var/lib/mysql
+
+      - ./mariadb-init:/docker-entrypoint-initdb.d
+
+    environment:
+
+      # Leemos del .env
+
+      MARIADB_ROOT_PASSWORD: "${DB_ROOT_PASS}"
+
+      MARIADB_DATABASE: "${DB_NAME}"
+
+    restart: unless-stopped
+
+    healthcheck:
+
+      test: ["CMD-SHELL", "mariadb-admin ping -h localhost -u root -p$$MARIADB_ROOT_PASSWORD"]
+
+      interval: 10s
+
+      timeout: 5s
+
+      retries: 5
+
+      start_period: 20s
+
+
+
+  # === SERVICIO 3: SERVIDOR TOMCAT (VERSIÓN FINAL PRO) ===
+
+  tomcat-server:
+
+    # Construcción personalizada usando el Dockerfile Multi-etapa
+
+    build: ./ServerUbicua
+
+   
+
+    container_name: tomcat-server
+
+    ports:
+
+      - "${TOMCAT_PORT}:8080"
+
+    networks:
+
+      - app-network
+
+   
+
+    volumes:
+
+      # Tomcat-context para pool de conexiones
+
+      - ./tomcat-context.xml:/usr/local/tomcat/conf/Catalina/localhost/ServerExampleUbicomp.xml
+
+
+
+    environment:
+
+      # Leemos del .env y pasamos a Java
+
+      CATALINA_OPTS: "-Ddb.user=${REAL_DB_USER} -Ddb.password=${REAL_DB_PASS}"
+
+      MQTT_HOST: "mqtt-broker"
+
+      MQTT_PORT: "1883"
+
+     
+
+    depends_on:
+
+      mariadb-server:
+
+        condition: service_healthy
+
+      mqtt-broker:
+
+        condition: service_healthy
+
+    restart: unless-stopped
+
+
+
+  # === SERVICIO 4: ADMINER (Gestor Visual de BBDD) ===
+
+  db-admin:
+
+    image: adminer
+
+    container_name: db-admin
+
+    ports:
+
+      - "${ADMINER_PORT}:8080"
+
+    networks:
+
+      - app-network
+
+    restart: always
+
+    depends_on:
+
+      mariadb-server:
+
+        condition: service_healthy
+
+
+
+# === VOLÚMENES Y RED ===
+
+volumes:
+
+  mosquitto-data:
+
+  mosquitto-log:
+
+
+
+
+networks:
+
+  app-network:
+
+    driver: bridge

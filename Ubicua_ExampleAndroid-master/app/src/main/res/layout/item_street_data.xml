@@ -1,0 +1,54 @@
+<!-- Archivo: res/layout/item_street_data.xml (VERSIÓN FINAL Y COMPLETA) -->
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:gravity="center_vertical"
+    android:padding="16dp"
+    android:background="?attr/selectableItemBackground">
+
+    <!-- 1. ImageView para el icono del sensor (ID: ivIcon) -->
+    <ImageView
+        android:id="@+id/ivIcon"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginEnd="16dp"
+        tools:src="@android:drawable/ic_dialog_info" /> <!-- Icono de placeholder para la vista previa -->
+
+    <!-- Contenedor para los textos (clave y descripción) -->
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:orientation="vertical">
+
+        <!-- 2. TextView para la clave (ID: tvDataKey) -->
+        <TextView
+            android:id="@+id/tvDataKey"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            tools:text="Humedad Relativa" />
+
+        <!-- 3. TextView para la descripción del estado (ID: tvDataDescription) -->
+        <TextView
+            android:id="@+id/tvDataDescription"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="14sp"
+            tools:text="Ideal / Confortable" />
+    </LinearLayout>
+
+    <!-- 4. TextView para el valor numérico (ID: tvDataValue) -->
+    <TextView
+        android:id="@+id/tvDataValue"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        tools:text="55.0 %" />
+
+</LinearLayout>

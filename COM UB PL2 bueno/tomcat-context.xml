@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Context>
+    <Resource 
+        name="jdbc/ubicomp"
+        auth="Container"
+        type="javax.sql.DataSource"
+        driverClassName="org.mariadb.jdbc.Driver"
+        
+        url="jdbc:mariadb://mariadb-server:3306/UBICOMP"
+        
+        username="${db.user}"
+        password="${db.password}"
+        
+        maxTotal="20"
+        maxIdle="10"
+        maxWaitMillis="10000"
+    />
+</Context>

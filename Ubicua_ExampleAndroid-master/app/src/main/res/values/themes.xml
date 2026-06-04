@@ -1,0 +1,28 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme. -->
+    <style name="Base.Theme.AppPECL3" parent="Theme.Material3.DayNight.NoActionBar">
+        <!-- Customize your light theme here. -->
+        <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+
+        <!-- Color primario (para las barras, botones, etc.) -->
+        <item name="colorPrimary">@color/dark_yellow</item>
+
+        <!-- Variante más oscura del color primario (para la barra de estado superior) -->
+        <item name="colorPrimaryVariant">@color/dark_yellow_dark</item>
+
+        <!-- Color para el texto que va SOBRE el color primario (lo dejamos en blanco) -->
+        <item name="colorOnPrimary">@color/white</item>
+
+        <!-- ... aquí pueden ir otros colores secundarios, que puedes dejar como están ... -->
+        <!-- <item name="colorSecondary">@color/teal_200</item> -->
+        <!-- <item name="colorSecondaryVariant">@color/teal_700</item> -->
+        <!-- <item name="colorOnSecondary">@color/black</item> -->
+
+
+        <!-- Color de la barra de estado -->
+        <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
+
+    </style>
+
+    <style name="Theme.AppPECL3" parent="Base.Theme.AppPECL3" />
+</resources>

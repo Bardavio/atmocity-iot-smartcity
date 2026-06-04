@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="dark_yellow">#FFA000</color> <!-- Amarillo/naranja principal -->
+    <color name="dark_yellow_dark">#FF8F00</color> <!-- Un tono más oscuro para la barra de estado -->
+    <color name="dark_yellow_light">#FFC107</color> <!-- Un tono más claro para acentos -->
+
+    <!-- Colores para el tema oscuro -->
+    <color name="dark_grey">#212121</color>
+    <color name="dark_grey_dark">#000000</color>
+    <color name="light_grey">#B0B0B0</color>
+</resources>

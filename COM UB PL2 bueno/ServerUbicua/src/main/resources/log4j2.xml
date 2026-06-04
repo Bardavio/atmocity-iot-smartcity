@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="info">
+    <Appenders>
+    
+        <Console name="Console" target="SYSTEM_OUT">
+            <PatternLayout pattern="%n%d{yyyy-MM-dd HH:mm:ss.SSS} %-5level %logger{36} ### %msg" />
+        </Console>
+
+        <RollingFile name="LogFile" fileName="/opt/tomcat/webapps/ServerExampleUbicomp/log.log"
+                     filePattern="/opt/tomcat/webapps/ServerExampleUbicomp/logs/Ubicomp-%d{yyyy}-%i.log.gz">
+            <PatternLayout
+                pattern="%n%d{yyyy-MM-dd HH:mm:ss.SSS} %-5level %-30l %logger{36} ### %msg"
+                header="-- UBICOMP SERVER EXAMPLE LOG --" />
+            <Policies>
+                <TimeBasedTriggeringPolicy />
+                <SizeBasedTriggeringPolicy size="10 MB" />
+            </Policies>
+            <DefaultRolloverStrategy max="20"/>
+        </RollingFile>
+        
+        <RollingFile name="LogFileMQTT" fileName="/opt/tomcat/webapps/ServerExampleUbicomp/logmqtt.log"
+                     filePattern="/opt/tomcat/webapps/ServerExampleUbicomp/logs/Ubicompmqtt-%d{yyyy}-%i.log.gz">
+            <PatternLayout
+                pattern="%n%d{yyyy-MM-dd HH:mm:ss.SSS} %-5level %-30l %logger{36} ### %msg"
+                header="-- UBICOMP SERVER EXAMPLE MQTT LOG --" />
+            <Policies>
+                <TimeBasedTriggeringPolicy />
+                <SizeBasedTriggeringPolicy size="10 MB" />
+            </Policies>
+            <DefaultRolloverStrategy max="20"/>
+        </RollingFile>
+        
+        <RollingFile name="LogFileDB" fileName="/opt/tomcat/webapps/ServerExampleUbicomp/logdb.log"
+                     filePattern="/opt/tomcat/webapps/ServerExampleUbicomp/logs/Ubicompdb-%d{yyyy}-%i.log.gz">
+            <PatternLayout
+                pattern="%n%d{yyyy-MM-dd HH:mm:ss.SSS} %-5level %-30l %logger{36} ### %msg"
+                header="-- UBICOMP SERVER EXAMPLE DATABASE LOG --" />
+            <Policies>
+                <TimeBasedTriggeringPolicy />
+                <SizeBasedTriggeringPolicy size="10 MB" />
+            </Policies>
+            <DefaultRolloverStrategy max="20"/>
+        </RollingFile> 
+    </Appenders>
+    
+    <Loggers>
+        <Logger name="log" additivity="FALSE" level="DEBUG">
+            <AppenderRef ref="LogFile" level="DEBUG" />
+            <AppenderRef ref="Console" level="DEBUG" /> </Logger>
+        
+        <Logger name="logmqtt" additivity="FALSE" level="DEBUG">
+            <AppenderRef ref="LogFileMQTT" level="DEBUG" />
+            <AppenderRef ref="Console" level="DEBUG" /> </Logger>
+        
+        <Logger name="logdb" additivity="FALSE" level="DEBUG">
+            <AppenderRef ref="LogFileDB" level="DEBUG" />
+            <AppenderRef ref="Console" level="DEBUG" /> </Logger>
+        
+        <Root level="info">
+            <AppenderRef ref="Console"/>
+        </Root>
+    </Loggers>
+</Configuration>

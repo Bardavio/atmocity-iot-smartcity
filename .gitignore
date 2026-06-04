@@ -1,0 +1,27 @@
+# IDE configurations
+.idea/
+.vscode/
+*.iml
+*.ipr
+*.iws
+
+# Gradle / Android Studio build files
+Ubicua_ExampleAndroid-master/.gradle/
+Ubicua_ExampleAndroid-master/local.properties
+Ubicua_ExampleAndroid-master/app/build/
+Ubicua_ExampleAndroid-master/build/
+Ubicua_ExampleAndroid-master/captures/
+.externalNativeBuild/
+.cxx/
+
+# Docker Local Data (CRITICAL to avoid pushing DB binaries)
+COM UB PL2 bueno/mariadb_data/
+
+# OS specific files
+Thumbs.db
+db.properties
+.DS_Store
+
+# Log files
+*.log
+apocalipsis.txt
